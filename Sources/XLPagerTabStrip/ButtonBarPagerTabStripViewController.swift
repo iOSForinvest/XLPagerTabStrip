@@ -112,10 +112,16 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             label.translatesAutoresizingMaskIntoConstraints = false
             label.font = self?.settings.style.buttonBarItemFont
             label.text = childItemInfo.title
-            let labelSize = label.intrinsicContentSize
-            return labelSize.width +
-            (childItemInfo.hasNewBadge == true ? 45 : 0) +
-            (self?.settings.style.buttonBarItemLeftRightMargin ?? 8) * 2
+            var labelWidth = label.intrinsicContentSize.width
+            if let badge = childItemInfo.badge {
+                let label = UILabel()
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.font = badge.font
+                label.text = badge.title
+                let badgeWidth = label.intrinsicContentSize.width + badge.spacing + badge.insets.left + badge.insets.right
+                labelWidth += badgeWidth
+            }
+            return labelWidth + (self?.settings.style.buttonBarItemLeftRightMargin ?? 8) * 2
         })
         
         let buttonBarViewAux = buttonBarView ?? {
@@ -335,7 +341,15 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             cell.imageView.highlightedImage = highlightedImage
         }
         
-        cell.newBadge.isHidden = indicatorInfo.hasNewBadge != true
+        cell.newBadge.isHidden = indicatorInfo.badge == nil
+        if let badge = indicatorInfo.badge {
+            cell.newBadge.backgroundColor = badge.backgroundColor
+            cell.newBadge.layer.cornerRadius = badge.cornerRadius
+            (cell.newBadge.superview as? UIStackView)?.spacing = badge.spacing
+            cell.badgeLabel.font = badge.font
+            cell.updateBadgeInsets(badge.insets)
+            cell.badgeLabel.text = badge.title
+        }
         configureCell(cell, indicatorInfo: indicatorInfo)
         
         if pagerBehaviour.isProgressiveIndicator {

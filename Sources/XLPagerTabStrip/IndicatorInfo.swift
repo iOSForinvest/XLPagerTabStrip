@@ -26,22 +26,50 @@ import Foundation
 import UIKit
 
 public struct IndicatorInfo {
+    
+    public struct BadgeOptions {
+        public var title: String
+        public var backgroundColor: UIColor
+        public var cornerRadius: CGFloat = 4
+        public var spacing: CGFloat = 4
+        public var font: UIFont
+        public var insets: UIEdgeInsets = UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
+        public var titleColor: UIColor
+        
+        public init(
+             title: String,
+             backgroundColor: UIColor,
+             cornerRadius: CGFloat = 4,
+             spacing: CGFloat = 4,
+             font: UIFont,
+             insets: UIEdgeInsets = UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4),
+             titleColor: UIColor
+         ) {
+             self.title = title
+             self.backgroundColor = backgroundColor
+             self.cornerRadius = cornerRadius
+             self.spacing = spacing
+             self.font = font
+             self.insets = insets
+             self.titleColor = titleColor
+         }
+    }
 
     public var title: String?
     public var image: UIImage?
     public var highlightedImage: UIImage?
     public var accessibilityLabel: String?
     public var userInfo: Any?
-    public var hasNewBadge: Bool?
+    public var badge: BadgeOptions?
     
     public init(title: String?) {
         self.title = title
         self.accessibilityLabel = title
     }
     
-    public init(title: String?, hasNewBadge: Bool?) {
+    public init(title: String?, badge: BadgeOptions) {
         self.title = title
-        self.hasNewBadge = hasNewBadge
+        self.badge = badge
         self.accessibilityLabel = title
     }
     

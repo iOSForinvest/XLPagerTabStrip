@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,36 +17,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="G2x-Im-Ycj">
-                        <rect key="frame" x="75" y="30.5" width="37.5" height="18"/>
+                        <rect key="frame" x="75" y="14.5" width="37.5" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7f-rk-sQl">
-                                <rect key="frame" x="0.0" y="0.0" width="37.5" height="18"/>
+                                <rect key="frame" x="0.0" y="0.0" width="37.5" height="50"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ST-7O-qVo">
-                                <rect key="frame" x="0.0" y="0.0" width="29" height="18"/>
+                                <rect key="frame" x="0.0" y="0.0" width="8" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeni" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFT-wy-scV">
-                                        <rect key="frame" x="4" y="3" width="20.5" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFT-wy-scV">
+                                        <rect key="frame" x="4" y="2" width="0.0" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" name="TypePrimary"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" name="BrandYellowDark"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="Bpw-xp-OJ4"/>
                                     <constraint firstItem="jFT-wy-scV" firstAttribute="centerY" secondItem="9ST-7O-qVo" secondAttribute="centerY" id="Hev-Fj-9Nz"/>
-                                    <constraint firstAttribute="width" constant="29" id="VF6-yT-XeT"/>
+                                    <constraint firstAttribute="bottom" secondItem="jFT-wy-scV" secondAttribute="bottom" constant="2" id="bfb-Mm-t3M"/>
+                                    <constraint firstAttribute="trailing" secondItem="jFT-wy-scV" secondAttribute="trailing" constant="4" id="nRf-Y9-sMP"/>
+                                    <constraint firstItem="jFT-wy-scV" firstAttribute="top" secondItem="9ST-7O-qVo" secondAttribute="top" constant="2" id="o7W-rg-oCg"/>
+                                    <constraint firstItem="jFT-wy-scV" firstAttribute="leading" secondItem="9ST-7O-qVo" secondAttribute="leading" constant="4" id="obK-mZ-9zW"/>
                                     <constraint firstItem="jFT-wy-scV" firstAttribute="centerX" secondItem="9ST-7O-qVo" secondAttribute="centerX" id="rcA-Ru-pxd"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                     </stackView>
@@ -69,6 +65,7 @@
             </constraints>
             <size key="customSize" width="187" height="79"/>
             <connections>
+                <outlet property="badgeLabel" destination="jFT-wy-scV" id="SiF-gh-Ffg"/>
                 <outlet property="imageView" destination="tFG-yJ-6Th" id="Odb-dR-tf4"/>
                 <outlet property="label" destination="s7f-rk-sQl" id="4gU-tb-BMB"/>
                 <outlet property="newBadge" destination="9ST-7O-qVo" id="Yah-Zv-4Db"/>
@@ -76,12 +73,4 @@
             <point key="canvasLocation" x="391.19999999999999" y="558.17091454272872"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <namedColor name="BrandYellowDark">
-            <color red="1" green="0.76078431372549016" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="TypePrimary">
-            <color red="0.078431372549019607" green="0.12549019607843137" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

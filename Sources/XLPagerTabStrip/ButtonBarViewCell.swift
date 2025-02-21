@@ -26,16 +26,35 @@ import UIKit
 import Foundation
 
 open class ButtonBarViewCell: UICollectionViewCell {
-
+    
+    private var badgeConstraints: [NSLayoutConstraint] = []
+    
     @IBOutlet open var imageView: UIImageView!
     @IBOutlet open var label: UILabel!
     @IBOutlet open var newBadge: UIView!
+    @IBOutlet weak var badgeLabel: UILabel!
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         isAccessibilityElement = true
         accessibilityTraits.insert([.button, .header])
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupConstraints()
+    }
+    
+    func setupConstraints(){
+        badgeConstraints = [
+            badgeLabel.leadingAnchor.constraint(equalTo: newBadge.leadingAnchor),
+            badgeLabel.trailingAnchor.constraint(equalTo: newBadge.trailingAnchor),
+            badgeLabel.topAnchor.constraint(equalTo: newBadge.topAnchor),
+            badgeLabel.bottomAnchor.constraint(equalTo: newBadge.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(badgeConstraints)
     }
     
     open override var isSelected: Bool {
@@ -50,5 +69,26 @@ open class ButtonBarViewCell: UICollectionViewCell {
                 accessibilityTraits.remove(.selected)
             }
         }
+    }
+    
+    func updateBadgeInsets(_ insets: UIEdgeInsets) {
+        if let leading = badgeConstraints.first(where: { $0.firstAttribute == .leading }) {
+            leading.constant = insets.left
+        }
+        
+        if let trailing = badgeConstraints.first(where: { $0.firstAttribute == .trailing }) {
+            trailing.constant = -insets.right
+        }
+        
+        if let top = badgeConstraints.first(where: { $0.firstAttribute == .top }) {
+            top.constant = insets.top
+        }
+        
+        if let bottom = badgeConstraints.first(where: { $0.firstAttribute == .bottom }) {
+            bottom.constant = -insets.bottom
+        }
+        
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }
