@@ -32,9 +32,16 @@ public struct IndicatorInfo {
     public var highlightedImage: UIImage?
     public var accessibilityLabel: String?
     public var userInfo: Any?
+    public var hasNewBadge: Bool?
     
     public init(title: String?) {
         self.title = title
+        self.accessibilityLabel = title
+    }
+    
+    public init(title: String?, hasNewBadge: Bool?) {
+        self.title = title
+        self.hasNewBadge = hasNewBadge
         self.accessibilityLabel = title
     }
     
